@@ -1,14 +1,8 @@
 import React, { Component } from "react";
 import { NewLandingPage } from "./containers/NewLandingPage";
+import { withRouter, RouteComponentProps } from "react-router";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <NewLandingPage />
-      </div>
-    );
-  }
-}
-
-export default App;
+// want to use ReactComponentProps but too many errors
+export const App: React.SFC<any> = props => (
+  <div className="App">{props.children}</div>
+);
