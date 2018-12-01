@@ -10,6 +10,7 @@ export type Props<T> = {
   placeholder?: string;
   onChange: (value?: T) => any;
   value?: T;
+  style?: any;
 };
 
 const InputForType: React.SFC<Props<any>> = props => {
