@@ -1,5 +1,6 @@
 import * as React from "react";
 import Modal from "react-bootstrap4-modal";
+import { Navbar } from "../components/layout/Navbar";
 import { Landing1 } from "../components/LandingPages/Landing1";
 import { LandingError } from "../components/LandingPages/LandingError";
 
@@ -38,15 +39,67 @@ export class NewLandingPage extends React.Component<{}, State> {
 
   render() {
     return (
-      <div>
-        <h1>Choose Style</h1>
-        <button
-          onClick={() => this.setState({ choice: "Landing1", choosing: false })}
-        >
-          Style 1
-        </button>
+      <>
+        {this.state.choosing && (
+          <>
+            <Navbar />
+            <div className="container">
+              <h1 className="m-3">Choose A Landing Page Style:</h1>
+              <div className="row">
+                <div className="m-3">
+                  <img
+                    src="../images/Landing1.png"
+                    onClick={() =>
+                      this.setState({ choice: "Landing1", choosing: false })
+                    }
+                  />
+                </div>
+                <div className="m-3">
+                  <img
+                    src="../images/Landing1.png"
+                    onClick={() =>
+                      this.setState({ choice: "Landing1", choosing: false })
+                    }
+                  />
+                </div>
+                <div className="m-3">
+                  <img
+                    src="../images/Landing1.png"
+                    onClick={() =>
+                      this.setState({ choice: "Landing1", choosing: false })
+                    }
+                  />
+                </div>
+                <div className="m-3">
+                  <img
+                    src="../images/Landing1.png"
+                    onClick={() =>
+                      this.setState({ choice: "Landing1", choosing: false })
+                    }
+                  />
+                </div>
+                <div className="m-3">
+                  <img
+                    src="../images/Landing1.png"
+                    onClick={() =>
+                      this.setState({ choice: "Landing1", choosing: false })
+                    }
+                  />
+                </div>
+                <div className="m-3">
+                  <img
+                    src="../images/Landing1.png"
+                    onClick={() =>
+                      this.setState({ choice: "Landing1", choosing: false })
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+          </>
+        )}
         {!this.state.choosing && <PageSelector choice={this.state.choice} />}
-      </div>
+      </>
     );
   }
 }

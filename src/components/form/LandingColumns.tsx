@@ -1,62 +1,46 @@
 import * as React from "react";
 import Modal from "react-bootstrap4-modal";
 
-type Props = {
+type State = {
+  columnOne: string;
+  columnTwo: string;
+  columnThree: string;
   headingOne: string;
   headingTwo: string;
   headingThree: string;
-  headingOneModal: boolean;
-  headingTwoModal: boolean;
-  headingThreeModal: boolean;
+  columnsModal: boolean;
 };
 
-export class LandingColumns extends React.Component<{}, Props> {
-  constructor(props: Props) {
+export class LandingColumns extends React.Component<{}, State> {
+  constructor(props: State) {
     super(props);
     this.state = {
-      headingOne:
+      columnsModal: false,
+      headingOne: "Heading One",
+      headingTwo: "Heading Two",
+      headingThree: "Heading Three",
+      columnOne:
         "Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.",
-      headingTwo:
+      columnTwo:
         "Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.",
-      headingThree:
-        "Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.",
-      headingOneModal: false,
-      headingTwoModal: false,
-      headingThreeModal: false
+      columnThree:
+        "Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui."
     };
   }
 
-  handleClick = (e: any, modal: string) => {
-    e.stopPropagation();
-    switch (modal) {
-      case "headingOneModal": {
-        this.setState({
-          headingOneModal: this.state.headingOneModal ? false : true
-        });
-      }
-      case "headingTwoModal": {
-        this.setState({
-          headingTwoModal: this.state.headingTwoModal ? false : true
-        });
-      }
-      case "headingThreeModal": {
-        this.setState({
-          headingThreeModal: this.state.headingThreeModal ? false : true
-        });
-      }
-    }
+  handleClick = () => {
+    this.setState({ columnsModal: this.state.columnsModal ? false : true });
   };
+
   render() {
-    const { headingOneModal, headingTwoModal, headingThreeModal } = this.state;
+    const { columnsModal } = this.state;
     return (
       <>
         <div className="container">
           <div className="row">
             <div className="col-md-4">
-              <h2>Heading</h2>
-              <p onClick={e => this.handleClick(e, "headingOneModal")}>
-                {this.state.headingOne}
-              </p>
+              <h2>{this.state.headingOne}</h2>
+              <p onClick={e => this.handleClick()}>{this.state.columnOne}</p>
               <p>
                 <a className="btn btn-secondary" href="#" role="button">
                   View details &raquo;
@@ -64,10 +48,8 @@ export class LandingColumns extends React.Component<{}, Props> {
               </p>
             </div>
             <div className="col-md-4">
-              <h2>Heading</h2>
-              <p onClick={e => this.handleClick(e, "headingTwoModal")}>
-                {this.state.headingTwo}
-              </p>
+              <h2>{this.state.headingTwo}</h2>
+              <p onClick={e => this.handleClick()}>{this.state.columnTwo}</p>
               <p>
                 <a className="btn btn-secondary" href="#" role="button">
                   View details &raquo;
@@ -75,10 +57,8 @@ export class LandingColumns extends React.Component<{}, Props> {
               </p>
             </div>
             <div className="col-md-4">
-              <h2>Heading</h2>
-              <p onClick={e => this.handleClick(e, "headingThreeModal")}>
-                {this.state.headingThree}
-              </p>
+              <h2>{this.state.headingThree}</h2>
+              <p onClick={e => this.handleClick()}>{this.state.columnThree}</p>
               <p>
                 <a className="btn btn-secondary" href="#" role="button">
                   View details &raquo;
@@ -87,71 +67,52 @@ export class LandingColumns extends React.Component<{}, Props> {
             </div>
           </div>
         </div>
-        ;
-        <Modal
-          visible={headingOneModal}
-          onClickBackdrop={e => this.handleClick(e, "headingOneModal")}
-        >
-          <div className="modal-header">
-            <h5 className="modal-title">Heading One</h5>
-          </div>
+
+        <Modal visible={columnsModal} onClickBackdrop={e => this.handleClick()}>
           <div className="modal-body">
+            <h5 className="modal-title">Heading One</h5>
             <input
               type="text"
+              style={{ width: "100%" }}
+              value={this.state.headingOne}
               onChange={e => this.setState({ headingOne: e.target.value })}
             />
-          </div>
-          <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={e => this.handleClick(e, "headingOneModal")}
-            >
-              Submit
-            </button>
-          </div>
-        </Modal>
-        <Modal
-          visible={headingTwoModal}
-          onClickBackdrop={e => this.handleClick(e, "headingTwoModal")}
-        >
-          <div className="modal-header">
+            <textarea
+              value={this.state.columnOne}
+              rows={8}
+              style={{ width: "100%" }}
+            />
             <h5 className="modal-title">Heading Two</h5>
-          </div>
-          <div className="modal-body">
             <input
               type="text"
+              style={{ width: "100%" }}
+              value={this.state.headingTwo}
               onChange={e => this.setState({ headingTwo: e.target.value })}
             />
-          </div>
-          <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={e => this.handleClick(e, "headingTwoModal")}
-            >
-              Submit
-            </button>
-          </div>
-        </Modal>
-        <Modal
-          visible={headingThreeModal}
-          onClickBackdrop={e => this.handleClick(e, "headingThreeModal")}
-        >
-          <div className="modal-header">
+            <textarea
+              value={this.state.columnTwo}
+              rows={8}
+              style={{ width: "100%" }}
+            />
             <h5 className="modal-title">Heading Three</h5>
-          </div>
-          <div className="modal-body">
             <input
-              type="textarea"
+              type="text"
+              style={{ width: "100%" }}
+              value={this.state.headingThree}
               onChange={e => this.setState({ headingThree: e.target.value })}
+            />
+            <textarea
+              value={this.state.columnThree}
+              rows={8}
+              style={{ width: "100%" }}
             />
           </div>
           <div className="modal-footer">
             <button
               type="button"
+              value={this.state.headingOne}
               className="btn btn-primary"
-              onClick={e => this.handleClick(e, "headingThreeModal")}
+              onClick={e => this.handleClick()}
             >
               Submit
             </button>

@@ -2,46 +2,44 @@ import * as React from "react";
 import Modal from "react-bootstrap4-modal";
 
 type State = {
-  businessName: string;
-  businessModal: boolean;
+  footerModal: boolean;
+  footerText: string;
 };
 
-export class LandingNavbar extends React.Component<{}, State> {
+export class LandingFooter extends React.Component<{}, State> {
   constructor(props: State) {
     super(props);
     this.state = {
-      businessName: "YourBusinessName",
-      businessModal: false
+      footerModal: false,
+      footerText: "YourBusinessName 2019"
     };
   }
+
   handleClick = () => {
-    this.setState({ businessModal: this.state.businessModal ? false : true });
+    this.setState({ footerModal: this.state.footerModal ? false : true });
   };
+
   render() {
     return (
       <>
-        <nav className="navbar navbar-dark bg-dark flex-md-nowrap p-0 shadow">
-          <a
-            className="navbar-brand col-sm-3 col-md-2 mr-0"
-            href="#"
-            onClick={this.handleClick}
-          >
-            {this.state.businessName}
-          </a>
-        </nav>
+        <footer className="container">
+          <p onClick={() => this.handleClick()}>
+            &copy; {this.state.footerText}
+          </p>
+        </footer>
 
         <Modal
-          visible={this.state.businessModal}
+          visible={this.state.footerModal}
           onClickBackdrop={() => this.handleClick()}
         >
           <div className="modal-header">
-            <h5 className="modal-title">Business Name</h5>
+            <h5 className="modal-title">Footer Text</h5>
           </div>
           <div className="modal-body">
             <input
               type="text"
-              value={this.state.businessName}
-              onChange={e => this.setState({ businessName: e.target.value })}
+              value={this.state.footerText}
+              onChange={e => this.setState({ footerText: e.target.value })}
             />
           </div>
           <div className="modal-footer">

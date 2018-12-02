@@ -2,8 +2,7 @@ import * as React from "react";
 import Modal from "react-bootstrap4-modal";
 
 type State = {
-  jumbotronTitleModal: boolean;
-  jumbotronParagraphModal: boolean;
+  jumbotronModal: boolean;
   jumbotronTitle: string;
   jumbotronParagraph: string;
 };
@@ -12,51 +11,29 @@ export class LandingJumbotron extends React.Component<{}, State> {
   constructor(props: State) {
     super(props);
     this.state = {
-      jumbotronTitleModal: false,
-      jumbotronParagraphModal: false,
+      jumbotronModal: false,
       jumbotronTitle: "Jumbotron Title",
       jumbotronParagraph:
         "This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique."
     };
   }
 
-  handleClick = (e: string) => {
-    switch (e) {
-      case "jumbotronParagraphModal": {
-        this.setState({
-          jumbotronParagraphModal: this.state.jumbotronParagraphModal
-            ? false
-            : true
-        });
-      }
-      case "jumbotronTitleModal": {
-        this.setState({
-          jumbotronTitleModal: this.state.jumbotronTitleModal ? false : true
-        });
-      }
-    }
+  handleClick = () => {
+    this.setState({
+      jumbotronModal: this.state.jumbotronModal ? false : true
+    });
   };
+
   render() {
-    const {
-      jumbotronTitle,
-      jumbotronTitleModal,
-      jumbotronParagraph,
-      jumbotronParagraphModal
-    } = this.state;
+    const { jumbotronModal, jumbotronTitle, jumbotronParagraph } = this.state;
     return (
       <>
         <div className="jumbotron jumbotron-fluid">
           <div className="container">
-            <h1
-              className="display-3"
-              onClick={() => this.handleClick("jumbotronTitleModal")}
-            >
+            <h1 className="display-3" onClick={() => this.handleClick()}>
               {jumbotronTitle}
             </h1>
-            <p
-              className="lead"
-              onClick={() => this.handleClick("jumbotronParagraphModal")}
-            >
+            <p className="lead" onClick={() => this.handleClick()}>
               {jumbotronParagraph}
             </p>
             <p>
@@ -66,9 +43,10 @@ export class LandingJumbotron extends React.Component<{}, State> {
             </p>
           </div>
         </div>
+
         <Modal
-          visible={jumbotronTitleModal}
-          onClickBackdrop={() => this.handleClick("jumbotronTitleModal")}
+          visible={jumbotronModal}
+          onClickBackdrop={() => this.handleClick()}
         >
           <div className="modal-header">
             <h5 className="modal-title">Jumbotron Title</h5>
@@ -76,30 +54,19 @@ export class LandingJumbotron extends React.Component<{}, State> {
           <div className="modal-body">
             <input
               type="text"
+              style={{ width: "100%" }}
+              value={this.state.jumbotronTitle}
               onChange={e => this.setState({ jumbotronTitle: e.target.value })}
             />
           </div>
-          <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={() => this.handleClick("jumbotronTitleModal")}
-            >
-              Submit
-            </button>
-          </div>
-        </Modal>
-
-        <Modal
-          visible={jumbotronParagraphModal}
-          onClickBackdrop={() => this.handleClick("jumbotronParagraphModal")}
-        >
           <div className="modal-header">
             <h5 className="modal-title">Jumbotron Paragraph</h5>
           </div>
           <div className="modal-body">
-            <input
-              type="textarea"
+            <textarea
+              rows={8}
+              style={{ width: "100%" }}
+              value={this.state.jumbotronParagraph}
               onChange={e =>
                 this.setState({ jumbotronParagraph: e.target.value })
               }
@@ -109,7 +76,7 @@ export class LandingJumbotron extends React.Component<{}, State> {
             <button
               type="button"
               className="btn btn-primary"
-              onClick={() => this.handleClick("jumbotronParagraphModal")}
+              onClick={() => this.handleClick()}
             >
               Submit
             </button>
