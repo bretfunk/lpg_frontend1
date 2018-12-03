@@ -40,6 +40,7 @@ export class LandingNavbar extends React.Component<{}, State> {
           <div className="modal-body">
             <input
               type="text"
+              style={{ width: "100%" }}
               value={this.state.businessName}
               onChange={e => this.setState({ businessName: e.target.value })}
             />

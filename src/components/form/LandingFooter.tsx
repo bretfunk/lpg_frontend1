@@ -38,6 +38,7 @@ export class LandingFooter extends React.Component<{}, State> {
           <div className="modal-body">
             <input
               type="text"
+              style={{ width: "100%" }}
               value={this.state.footerText}
               onChange={e => this.setState({ footerText: e.target.value })}
             />

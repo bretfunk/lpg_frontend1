@@ -4,14 +4,14 @@ import { Navbar } from "../components/layout/Navbar";
 export const Home: React.SFC = props => (
   <>
     <nav className="navbar navbar-dark bg-dark flex-md-nowrap p-0 shadow">
-      <a className="navbar-brand col-sm-3 col-md-2 mr-0" href="#">
+      <a className="navbar-brand col-sm-3 col-md-2 mr-0" href="/">
         5min
       </a>
       <ul className="navbar-nav px-3">
         <div className="row">
           <li className="nav-item text-nowrap pr-3">
             <a className="nav-link" href="/landingpages/new">
-              Try Now
+              Try It Now
             </a>
           </li>
           <li className="nav-item text-nowrap pr-3">
